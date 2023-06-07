@@ -1,0 +1,27 @@
+; Include forcefield parameters
+#include "amber99sb.ff/forcefield.itp"
+
+; Include Position restraint file
+#ifdef POSRES_PROT
+#include "./posre_protein.itp"
+#endif
+
+; Include water topology
+#include "amber99sb.ff/spc.itp"
+
+#ifdef POSRES_WATER
+; Position restraint for each water oxygen
+[ position_restraints ]
+;  i funct       fcx        fcy        fcz
+   1    1       1000       1000       1000
+#endif
+
+; Include topology for ions
+#include "amber99sb.ff/ions.itp"
+
+[ system ]
+; Name
+Protein_LIG in water
+
+[ molecules ]
+; Compound        #mols
